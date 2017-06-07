@@ -62,7 +62,7 @@ var set = function(cell, value, grid) {
   return grid;
 };
 
-// Grid -> String
+// Grid -> void
 exports.display = function(grid) {
   R.map(console.log, grid);
 };
