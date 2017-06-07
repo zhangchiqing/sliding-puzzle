@@ -1,4 +1,5 @@
 var R = require('ramda');
+var assert = require('assert');
 var grid = require('./grid');
 // Stream { name: String, ctrl: Bool, shift: Bool }
 var keypressS = require('./keypress');
@@ -9,7 +10,8 @@ var dirS = keypressS.map(R.prop('name'))
 
 dirS.forEach(console.log);
 
-var level = 4;
+var level = parseInt(process.argv[2], 10);
+assert(level > 0, 'node index.js 3');
 // Stream Grid
 var gridS = dirS.scan(R.flip(grid.move), grid.make(level, level));
 gridS.forEach(grid.display);
