@@ -9,8 +9,10 @@ var dirS = keypressS.map(R.prop('name'))
 
 dirS.forEach(console.log);
 
+var level = 4;
 // Stream Grid
-var gridS = dirS.scan(R.flip(grid.move), grid.make(3,3));
+var gridS = dirS.scan(R.flip(grid.move), grid.make(level, level));
 gridS.forEach(grid.display);
 
+console.log('level:', level);
 console.log('use keyboard to start: up, down, left, right');

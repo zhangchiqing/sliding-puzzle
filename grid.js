@@ -34,13 +34,13 @@ var findNext = function(dir, cell, grid) {
   var gc = grid[0].length - 1;
   var r = Cell.selectRow(cell);
   var c = Cell.selectCol(cell);
-  if (dir === 'up') {
+  if (dir === 'down') {
     return Cell.make(Math.max(0, r - 1), c);
-  } else if (dir === 'down') {
+  } else if (dir === 'up') {
     return Cell.make(Math.min(gr, r + 1), c);
-  } else if (dir === 'left') {
-    return Cell.make(r, Math.max(0, c - 1));
   } else if (dir === 'right') {
+    return Cell.make(r, Math.max(0, c - 1));
+  } else if (dir === 'left') {
     return Cell.make(r, Math.min(gc, c + 1));
   }
 };
