@@ -1,4 +1,5 @@
 var R = require('ramda');
+var M = require('most');
 var assert = require('assert');
 var grid = require('./grid');
 // Stream { name: String, ctrl: Bool, shift: Bool }
@@ -8,7 +9,11 @@ var keypressS = require('./keypress');
 var dirS = keypressS.map(R.prop('name'))
                     .filter(R.contains(R.__, ['up', 'down', 'left', 'right']));
 
-dirS.forEach(console.log);
+
+var step = 1;
+dirS.forEach(function(dir) {
+  console.log('step', step++, dir);
+});
 
 var level = parseInt(process.argv[2], 10);
 assert(level > 0, 'node index.js 3');
