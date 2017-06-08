@@ -36,10 +36,14 @@ var Cell = {
 
 // Grid -> Cell
 var findEmpty = function(grid) {
-  var index = R.findIndex(R.equals(-1), R.unnest(grid));
-  var rowcol = exports.rowcol(grid);
-  return Cell.make(Math.floor(index / rowcol[1]),
-    Math.floor(index % rowcol[0]));
+  for (var r = 0; r < grid.length; r++) {
+    var row = grid[r];
+    for (var c = 0; c < row.length; c++) {
+      if (row[c] === -1) {
+        return Cell.make(r, c);
+      }
+    }
+  };
 };
 
 // Direction -> Cell -> Grid -> Cell
@@ -62,8 +66,9 @@ var findNext = function(dir, cell, grid) {
 
 // Cell -> Cell -> Grid -> Grid
 var swap = function(cell1, cell2, grid) {
-  var tmp = read(cell1, grid);
-  return set(cell2, tmp, set(cell1, read(cell2, grid), grid));
+  var v_cell1 = read(cell1, grid);
+  var v_cell2 = read(cell2, grid);
+  return set(cell2, v_cell1, set(cell1, v_cell2, grid));
 };
 
 // Cell -> Grid -> Number

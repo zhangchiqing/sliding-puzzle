@@ -16,9 +16,10 @@ dirS.forEach(function(dir) {
 });
 
 var level = parseInt(process.argv[2], 10);
+var col = parseInt(process.argv[3], 10);
 assert(level > 0, 'node index.js 3');
 // Stream Grid
-var gridS = dirS.scan(R.flip(grid.move), grid.make(level, level));
+var gridS = dirS.scan(R.flip(grid.move), grid.make(level, col ? col : level));
 gridS.forEach(grid.display);
 
 console.log('level:', level);
